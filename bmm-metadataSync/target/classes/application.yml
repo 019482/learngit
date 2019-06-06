@@ -1,0 +1,27 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /metaSync
+spring:
+  profiles:
+    #include: test
+  thymeleaf:
+    suffix: .html
+    cache: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
+#    driver-class-name: org.gjt.mm.mysql.Driver     # 配置MySQL的驱动程序类(早期)
+    driver-class-name: com.mysql.jdbc.Driver     # 配置MySQL的驱动程序类
+    url: jdbc:mysql://172.16.36.197:3306/testbdr?useUnicode=true&amp;characterEncoding=utf8# 数据库连接地址
+    username: bdr # 数据库用户名
+    password: D.123%dr # 数据库连接密码
+    filer: wall,stat
+    dbcp2:                                          # 进行数据库连接池的配置
+      min-idle: 5                                   # 数据库连接池的最小维持连接数
+      initial-size: 5                               # 初始化提供的连接数
+      max-total: 5                                  # 最大的连接数
+      max-wait-millis: 200                          # 等待连接获取的最大超时时间
+mybatis:
+  config-location: classpath:mapper/mybatis.cfg.xml    # mybatis配置文件所在路径
+  type-aliases-package: com.bonc.meta.bean            # 定义所有实体类的别名所在包
+  mapper-locations:  classpath:mapper/*Mapper.xml      # 所有的mapper映射文件
